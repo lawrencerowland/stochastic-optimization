@@ -1,0 +1,25 @@
+
+conda activate StochasticOptimisation36v2_Env
+
+See notes on issue I raise in the original repo. In addition to below, I had to:
+1. do one other thing for Diabetes (that is in the file I changed)- cant remember what
+2. for Clinical, change Model to Model A in parameters. 
+***
+
+...couple of minor tweaks. I have recorded them here in case it helps anyone.
+I installed Numpy, SciPy, Pandas, Matplotlib, xlrd, Open pyxl, cvx opt, NetworkX and the last version of python 3.6. I ended up downgrading Pandas and Numpy to versions available in early 2019, but I dont know if that was necessary.
+
+Blood, Energy, Dynamic, Static and News repos all worked straight away.
+
+Adapt repo worked once I had deleted the first row in Base parameters.xlsx
+
+Diabetes repo worked once I had:
+
+added the argument index_col=0 into the Driver Script for the read_excel function for Additional_params and for S0
+In ModelFile, Changed the .loc pandas operation for additional_params.loc['sigma-w',0] by changing 0 to '0'
+Did the same for looking up .loc['truth-type',0] in the ModelFile
+did the same for .loc['increment',0] in the DriverScript
+In Driver Script, I added the line state_names=['M','Sens','Secr','AGI','PA'] into Driver_script and then modified the call to the create an instance of the Model class, changing the first of the four arguments to 'state_names', instead of the reference to the x_names
+Asset repo worked once I added argument 'index_col=0 to the read_excel function for biasdf in the DriverScript
+
+Clinical repo worked I had deleted a column in the spreadsheet so that 'Potential_pop':float(data.iat[0,0]) referred correctly.

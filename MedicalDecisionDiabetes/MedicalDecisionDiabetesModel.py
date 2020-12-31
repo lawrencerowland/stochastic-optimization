@@ -42,9 +42,9 @@ class MedicalDecisionDiabetesModel():
         self.Decision = namedtuple('Decision', x_names)
         self.obj = 0.0
         self.obj_sum = 0.0
-        self.sigma_w = additional_params.loc['sigma_w', 0]
+        self.sigma_w = additional_params.loc['sigma_w', '0']
         self.truth_params_dict = {} #changed later
-        self.truth_type = additional_params.loc['truth_type', 0]
+        self.truth_type = additional_params.loc['truth_type', '0']
         self.mu = {} #updated using "exog_info_sample_mu" at the beginning of each sample path 
         self.t = 0 # time counter (in months)
 
